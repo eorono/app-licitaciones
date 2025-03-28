@@ -1,0 +1,51 @@
+.chat {
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between; 
+    width: 50%;
+    height: 100%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chat h2 {
+    margin: 0; 
+  }
+  
+  .upload-section {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    flex-grow: 1; 
+    margin: 20px 0; 
+  }
+  
+  .upload-section h3 {
+    margin: 0;
+    padding-bottom: 10px;
+  }
+  
+  .upload-section button {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .upload-section button:hover {
+    background: #0056b3;
+  }
+  
+  .chat input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
