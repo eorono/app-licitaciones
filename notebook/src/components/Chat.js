@@ -17,7 +17,7 @@ const Chat = () => {
       </div>
       <input type="text" placeholder="Escribe un mensaje..." />
 
-      {/* Modal */}
+      {}
       <Modal isOpen={isModalOpen} closeModal={closeModal} />
     </div>
   );
