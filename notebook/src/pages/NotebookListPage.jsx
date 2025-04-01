@@ -1,16 +1,18 @@
-// src/pages/NotebookListPage.jsx
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Importar useNavigate
 import NotebookCard from "../components/NotebookCard";
+import AuthButton from "../components/AuthButton"; // Importar el componente
 import "../App.css";
 
-/**
- * NotebookListPage
- * ----------------
- * Muestra la lista de cuadernos. Si no existen cuadernos,
- * se muestra un mensaje y un botón para crear el primer cuaderno.
- */
-function NotebookListPage({ notebooks, setNotebooks }) {
-  // Función para crear un nuevo cuaderno vacío
+function NotebookListPage({
+  notebooks,
+  setNotebooks,
+  user,
+  setUser,
+  handleLogout,
+}) {
+  const navigate = useNavigate(); // Para redirigir
+
   const handleNewNotebook = () => {
     const newNotebook = {
       id: notebooks.length + 1,
@@ -21,11 +23,14 @@ function NotebookListPage({ notebooks, setNotebooks }) {
     setNotebooks([...notebooks, newNotebook]);
   };
 
-  // Función para eliminar un cuaderno por su id
   const handleDeleteNotebook = (id) => {
     if (window.confirm("¿Estás seguro de eliminar este cuaderno?")) {
       setNotebooks(notebooks.filter((notebook) => notebook.id !== id));
     }
+  };
+
+  const handleRegisterClick = () => {
+    navigate("/register"); // Redirigir al formulario de registro
   };
 
   return (
@@ -33,9 +38,11 @@ function NotebookListPage({ notebooks, setNotebooks }) {
       <header className="notebook-list-page__header">
         <div className="notebook-list-page__logo">Notebook</div>
         <div className="notebook-list-page__right-actions">
-          <button className="notebook-list-page__config-button">
-            Configuraciones
-          </button>
+          <AuthButton
+            userEmail={user}
+            handleLogout={handleLogout}
+            handleRegisterClick={handleRegisterClick}
+          />
         </div>
       </header>
       <main className="notebook-list-page__main">
