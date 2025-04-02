@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Importar useNavigate
+// src/pages/NotebookListPage.jsx
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import NotebookCard from "../components/NotebookCard";
-import AuthButton from "../components/AuthButton"; // Importar el componente
 import "../App.css";
 
 function NotebookListPage({
@@ -9,9 +9,8 @@ function NotebookListPage({
   setNotebooks,
   user,
   setUser,
-  handleLogout,
 }) {
-  const navigate = useNavigate(); // Para redirigir
+  const navigate = useNavigate();
 
   const handleNewNotebook = () => {
     const newNotebook = {
@@ -30,7 +29,16 @@ function NotebookListPage({
   };
 
   const handleRegisterClick = () => {
-    navigate("/register"); // Redirigir al formulario de registro
+    navigate("/register");
+  };
+
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("userEmail");
+    setUser(null);
   };
 
   return (
@@ -38,13 +46,35 @@ function NotebookListPage({
       <header className="notebook-list-page__header">
         <div className="notebook-list-page__logo">Notebook</div>
         <div className="notebook-list-page__right-actions">
-          <AuthButton
-            userEmail={user}
-            handleLogout={handleLogout}
-            handleRegisterClick={handleRegisterClick}
-          />
+          {user ? (
+            <>
+              <span>{user}</span>
+              <button
+                className="notebook-list-page__config-button"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="notebook-list-page__config-button"
+                onClick={handleLoginClick}
+              >
+                Iniciar Sesión
+              </button>
+              <button
+                className="notebook-list-page__config-button"
+                onClick={handleRegisterClick}
+              >
+                Registrarse
+              </button>
+            </>
+          )}
         </div>
       </header>
+
       <main className="notebook-list-page__main">
         <h1 className="notebook-list-page__title">Notebook</h1>
         {notebooks.length === 0 ? (

@@ -6,7 +6,7 @@ function AuthButton({ userEmail, handleLogout, handleRegisterClick }) {
       {userEmail ? (
         <>
           <span>{userEmail}</span> {/* Mostrar el correo del usuario */}
-          <button onClick={handleLogout}>Desloguearse</button>
+          <button onClick={handleLogout}>Cerrar sesión</button>
         </>
       ) : (
         <button onClick={handleRegisterClick}>Registrarse</button>
@@ -14,5 +14,5 @@ function AuthButton({ userEmail, handleLogout, handleRegisterClick }) {
     </div>
   );
 }
-
+    
 export default AuthButton;
