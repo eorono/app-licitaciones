@@ -12,7 +12,7 @@ import React from "react";
  * - icon: Ícono o emoji (opcional).
  * - onDelete: Función a ejecutar al hacer clic en eliminar.
  */
-function NotebookCard({ title, details, icon = "📓", onDelete }) {
+function NotebookCard({ title, details, icon = "📓", onDelete, onRename }) {
   return (
     <div className="notebook-card">
       <div className="notebook-card__icon">{icon}</div>
@@ -25,8 +25,12 @@ function NotebookCard({ title, details, icon = "📓", onDelete }) {
           Eliminar
         </button>
       )}
+      {onRename && (
+        <button className="notebook-card__delete-button" onClick={onRename}>
+          Renombrar
+        </button>
+      )}
     </div>
   );
 }
-
 export default NotebookCard;
