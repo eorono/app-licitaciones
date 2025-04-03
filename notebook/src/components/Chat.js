@@ -1,13 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/Chat.css";
-import Modal from "./Modal";
 
-const Chat = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
+const Chat = ({ openModal }) => {
   return (
     <div className="chat">
       <h2>Chat</h2>
@@ -16,9 +10,6 @@ const Chat = () => {
         <button onClick={openModal}>Subir una fuente</button>
       </div>
       <input type="text" placeholder="Escribe un mensaje..." />
-
-      {}
-      <Modal isOpen={isModalOpen} closeModal={closeModal} />
     </div>
   );
 };
