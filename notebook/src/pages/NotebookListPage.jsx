@@ -19,7 +19,6 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
       .then((data) => {
         if (data.books) {
           // Actualizamos el estado con los cuadernos
-          // Ajusta la forma en que guardas items/sources si lo deseas
           const loadedNotebooks = data.books.map((b) => ({
             id: b.id,
             title: b.titulo,
