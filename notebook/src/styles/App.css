@@ -4,17 +4,45 @@
   gap: 10px;
   padding: 10px;
   flex-wrap: nowrap;
+  background-color: #0f0f0f;
+  color: #ffffff;
 }
 
 .sidebar {
   transition: width 0.3s ease;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .notes {
   transition: width 0.3s ease;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .chat {
   transition: width 0.3s ease;
   flex-grow: 1;
+}
+
+.button-dark {
+  background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+  color: #ffffff;
+  border: 1px solid #333;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.button-dark:hover {
+  background: linear-gradient(145deg, #3a3a3a, #1f1f1f);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
 }

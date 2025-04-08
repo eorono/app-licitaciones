@@ -13,7 +13,7 @@ const Sidebar = ({ isExpanded, toggleExpand, files, openModal }) => {
           <div>
             <div className="top-content">
               <h2>Fuentes</h2>
-              <button className="add-source" onClick={openModal}>
+              <button className="add-source button-dark" onClick={openModal}>
                 + Añadir fuente
               </button>
             </div>
@@ -22,12 +22,15 @@ const Sidebar = ({ isExpanded, toggleExpand, files, openModal }) => {
               {files.length > 0 ? (
                 <ul className="file-list">
                   {files.map((file, index) => (
-                    <li key={index} className="file-item">📄 {file.name}</li>
+                    <li key={index} className="file-item">
+                      📄 {file.name}
+                    </li>
                   ))}
                 </ul>
               ) : (
                 <p className="info-text">
-                  Las fuentes guardadas aparecerán aquí. Puedes agregar PDFs, sitios web, textos o archivos de audio.
+                  Las fuentes guardadas aparecerán aquí. Puedes agregar PDFs,
+                  sitios web, textos o archivos de audio.
                 </p>
               )}
             </div>

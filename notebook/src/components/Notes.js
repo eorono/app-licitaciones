@@ -30,7 +30,8 @@ const Notes = ({ isExpanded, toggleExpand }) => {
           {}
           <div className="notes-section">
             <h3>Notas</h3>
-            <button className="add-note">+ Añadir nota</button>
+            <button className="add-note button-dark">+ Añadir nota</button>
+
 
             {}
             <div className="notes-categories">
