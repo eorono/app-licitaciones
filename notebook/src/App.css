@@ -61,7 +61,27 @@ body {
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 2rem;
+}/* Filtros de ordenación */
+.notebook-list-page__filters {
+  display: flex;
+  gap: 0.5rem;
 }
+
+.notebook-list-page__filter-btn {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.notebook-list-page__filter-btn.active {
+  background-color: #3a7afe;
+  border-color: #3a7afe;
+}
+
 
 /* Notebook Card Styles */
 .notebook-card {
