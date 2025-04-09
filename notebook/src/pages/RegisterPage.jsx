@@ -1,12 +1,15 @@
+// src/pages/RegisterPage.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import RegisterForm from "../components/RegisterForm"; // Importamos el componente
 
 function RegisterPage({ setUser }) {
+  const navigate = useNavigate();
+
   // Función que maneja el registro de usuario
   const handleSubmit = async (e, email, password, setError, setSuccess) => {
     e.preventDefault();
 
-    // Realizar la petición POST al backend
     try {
       const response = await fetch("http://localhost:5000/register", {
         method: "POST",
@@ -16,23 +19,22 @@ function RegisterPage({ setUser }) {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json(); // parsear la respuesta
+      const data = await response.json();
 
       if (response.ok) {
-        // Si la respuesta es correcta, mostramos el éxito y guardamos el email
-        localStorage.setItem("userEmail", email); // guardar el email del usuario
+        // Registro exitoso: se guarda el email, se actualiza el estado y se redirige a la pantalla principal.
+        localStorage.setItem("userEmail", email);
         setSuccess("Usuario registrado con éxito");
-        setError(""); // limpiar cualquier error anterior
-        setUser(email); // Establecer el email del usuario en el estado global
+        setError("");
+        setUser(email);
+        navigate("/"); // Redirige automáticamente a la pantalla principal
       } else {
-        // Si hay un error, mostramos el mensaje del servidor
         setError(data.message);
-        setSuccess(""); // limpiar mensaje de éxito
+        setSuccess("");
       }
     } catch (err) {
-      // Si hay un error al realizar la petición
       setError("Hubo un problema al registrar al usuario.");
-      setSuccess(""); // limpiar mensaje de éxito
+      setSuccess("");
     }
   };
 
