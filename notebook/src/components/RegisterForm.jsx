@@ -1,3 +1,4 @@
+// src/components/RegisterForm.jsx
 import React, { useState } from "react";
 
 function RegisterForm({ handleSubmit }) {
@@ -11,9 +12,7 @@ function RegisterForm({ handleSubmit }) {
       <h2>Registro</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {success && <p style={{ color: "green" }}>{success}</p>}
-      <form
-        onSubmit={(e) => handleSubmit(e, email, password, setError, setSuccess)}
-      >
+      <form onSubmit={(e) => handleSubmit(e, email, password, setError, setSuccess)}>
         <input
           type="email"
           placeholder="Correo electrónico"

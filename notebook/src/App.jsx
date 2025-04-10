@@ -10,7 +10,7 @@ function App() {
   const [notebooks, setNotebooks] = useState([]);
   const [user, setUser] = useState(null);
 
-  // Al montar la app, leemos localStorage para ver si hay userEmail guardado
+  // Al montar la app, leer el email almacenado en localStorage (para mantener la sesión)
   useEffect(() => {
     const storedEmail = localStorage.getItem("userEmail");
     if (storedEmail) {

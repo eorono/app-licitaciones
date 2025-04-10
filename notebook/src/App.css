@@ -61,7 +61,9 @@ body {
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 2rem;
-}/* Filtros de ordenación */
+}
+
+/* Filtros de ordenación */
 .notebook-list-page__filters {
   display: flex;
   gap: 0.5rem;
@@ -81,7 +83,6 @@ body {
   background-color: #3a7afe;
   border-color: #3a7afe;
 }
-
 
 /* Notebook Card Styles */
 .notebook-card {

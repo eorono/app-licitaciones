@@ -3,21 +3,12 @@ import React, { useState } from "react";
 
 /**
  * NotebookCard
- * ------------
- * Componente reutilizable para mostrar la información de un cuaderno.
- *
- * Props:
- * - title: Nombre o título del cuaderno.
- * - details: Texto con detalles (ej. "3 items • 2 fuentes").
- * - icon: Ícono o emoji (opcional).
- * - onDelete: Función a ejecutar al hacer clic en eliminar.
- * - onRename: Función a ejecutar al hacer clic en renombrar.
+ * Muestra la información de un cuaderno y permite eliminar o renombrarlo mediante un menú desplegable.
  */
 function NotebookCard({ title, details, icon = "📓", onDelete, onRename }) {
-  // Estado para controlar si el menú desplegable está abierto o cerrado
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Al hacer clic en el botón de tres puntos, invertimos el estado
+  // Toggle del menú desplegable
   const handleMenuToggle = () => {
     setMenuOpen(!menuOpen);
   };
@@ -30,12 +21,9 @@ function NotebookCard({ title, details, icon = "📓", onDelete, onRename }) {
         <p className="notebook-card__details">{details}</p>
       </div>
 
-      {/* Contenedor del menú de 3 puntos */}
+      {/* Menú desplegable de opciones */}
       <div className="notebook-card__menu-container">
-        <button
-          className="notebook-card__menu-button"
-          onClick={handleMenuToggle}
-        >
+        <button className="notebook-card__menu-button" onClick={handleMenuToggle}>
           ...
         </button>
 

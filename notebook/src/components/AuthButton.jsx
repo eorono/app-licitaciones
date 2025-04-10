@@ -1,3 +1,4 @@
+// src/components/AuthButton.jsx
 import React from "react";
 
 function AuthButton({ userEmail, handleLogout, handleRegisterClick }) {
@@ -5,7 +6,7 @@ function AuthButton({ userEmail, handleLogout, handleRegisterClick }) {
     <div className="auth-button">
       {userEmail ? (
         <>
-          <span>{userEmail}</span> {/* Mostrar el correo del usuario */}
+          <span>{userEmail}</span> {/* Muestra el correo del usuario */}
           <button onClick={handleLogout}>Cerrar sesión</button>
         </>
       ) : (
@@ -14,5 +15,5 @@ function AuthButton({ userEmail, handleLogout, handleRegisterClick }) {
     </div>
   );
 }
-    
+
 export default AuthButton;

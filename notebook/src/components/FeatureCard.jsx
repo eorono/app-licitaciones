@@ -3,12 +3,7 @@ import React from "react";
 
 /**
  * FeatureCard
- * -----------
- * Componente reutilizable para mostrar una tarjeta de funcionalidad.
- *
- * Props:
- * - title: Título de la tarjeta.
- * - description: Descripción del feature.
+ * Muestra una tarjeta con título y descripción.
  */
 function FeatureCard({ title, description }) {
   return (

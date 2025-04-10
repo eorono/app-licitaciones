@@ -9,6 +9,7 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
   const navigate = useNavigate();
   const [filterOption, setFilterOption] = useState("recent");
 
+  // Cargar cuadernos cuando 'user' cambia o al montar el componente
   useEffect(() => {
     if (!user) {
       setNotebooks([]);
@@ -36,18 +37,17 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
       });
   }, [user, setNotebooks]);
 
+  // Ordenar los cuadernos según el filtro seleccionado
   const sortedNotebooks = useMemo(() => {
     if (filterOption === "recent") {
-      // Ordenar por id descendente (más reciente primero)
       return [...notebooks].sort((a, b) => b.id - a.id);
     } else if (filterOption === "title") {
-      // Ordenar alfabéticamente por título
       return [...notebooks].sort((a, b) => a.title.localeCompare(b.title));
     }
-    // Si deseas un comportamiento por defecto si no es ninguno de los anteriores:
     return notebooks;
   }, [filterOption, notebooks]);
 
+  // Crear un nuevo cuaderno para el usuario
   const handleNewNotebook = async () => {
     if (!user) {
       alert("Inicia sesión antes");
@@ -76,6 +76,7 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
     }
   };
 
+  // Eliminar un cuaderno
   const handleDeleteNotebook = async (id) => {
     if (window.confirm("¿Estás seguro de eliminar este cuaderno?")) {
       try {
@@ -94,6 +95,7 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
     }
   };
 
+  // Renombrar un cuaderno
   const handleRenameNotebook = async (id) => {
     const newTitle = prompt("Ingresa el nuevo título:");
     if (!newTitle) return;
@@ -118,6 +120,7 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
     }
   };
 
+  // Funciones para navegación y autenticación
   const handleRegisterClick = () => {
     navigate("/register");
   };
@@ -176,10 +179,7 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
         {sortedNotebooks.length === 0 ? (
           <div className="notebook-list-page__empty">
             <p>No tienes cuadernos creados.</p>
-            <button
-              className="notebook-list-page__new-button"
-              onClick={handleNewNotebook}
-            >
+            <button className="notebook-list-page__new-button" onClick={handleNewNotebook}>
               Crear tu cuaderno
             </button>
           </div>
@@ -196,10 +196,7 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
                 />
               ))}
             </section>
-            <button
-              className="notebook-list-page__new-button"
-              onClick={handleNewNotebook}
-            >
+            <button className="notebook-list-page__new-button" onClick={handleNewNotebook}>
               + Nuevo cuaderno
             </button>
           </>
