@@ -179,7 +179,10 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
         {sortedNotebooks.length === 0 ? (
           <div className="notebook-list-page__empty">
             <p>No tienes cuadernos creados.</p>
-            <button className="notebook-list-page__new-button" onClick={handleNewNotebook}>
+            <button
+              className="notebook-list-page__new-button"
+              onClick={handleNewNotebook}
+            >
               Crear tu cuaderno
             </button>
           </div>
@@ -196,7 +199,10 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
                 />
               ))}
             </section>
-            <button className="notebook-list-page__new-button" onClick={handleNewNotebook}>
+            <button
+              className="notebook-list-page__new-button"
+              onClick={handleNewNotebook}
+            >
               + Nuevo cuaderno
             </button>
           </>

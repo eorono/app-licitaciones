@@ -23,7 +23,10 @@ function NotebookCard({ title, details, icon = "📓", onDelete, onRename }) {
 
       {/* Menú desplegable de opciones */}
       <div className="notebook-card__menu-container">
-        <button className="notebook-card__menu-button" onClick={handleMenuToggle}>
+        <button
+          className="notebook-card__menu-button"
+          onClick={handleMenuToggle}
+        >
           ...
         </button>
 
