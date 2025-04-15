@@ -40,14 +40,15 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
   // Ordenar los cuadernos según el filtro seleccionado
   const sortedNotebooks = useMemo(() => {
     if (filterOption === "recent") {
+      // Ordenar por id descendente (más reciente primero)
       return [...notebooks].sort((a, b) => b.id - a.id);
     } else if (filterOption === "title") {
+      // Ordenar alfabéticamente por título
       return [...notebooks].sort((a, b) => a.title.localeCompare(b.title));
     }
     return notebooks;
   }, [filterOption, notebooks]);
 
-  // Crear un nuevo cuaderno para el usuario
   const handleNewNotebook = async () => {
     if (!user) {
       alert("Inicia sesión antes");
@@ -76,7 +77,6 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
     }
   };
 
-  // Eliminar un cuaderno
   const handleDeleteNotebook = async (id) => {
     if (window.confirm("¿Estás seguro de eliminar este cuaderno?")) {
       try {
@@ -95,7 +95,6 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
     }
   };
 
-  // Renombrar un cuaderno
   const handleRenameNotebook = async (id) => {
     const newTitle = prompt("Ingresa el nuevo título:");
     if (!newTitle) return;
@@ -108,9 +107,7 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
       const data = await response.json();
       if (response.ok) {
         setNotebooks(
-          notebooks.map((nb) =>
-            nb.id === id ? { ...nb, title: newTitle } : nb
-          )
+          notebooks.map((nb) => (nb.id === id ? { ...nb, title: newTitle } : nb))
         );
       } else {
         alert(data.message || "Error al renombrar el cuaderno");
@@ -120,7 +117,6 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
     }
   };
 
-  // Funciones para navegación y autenticación
   const handleRegisterClick = () => {
     navigate("/register");
   };
@@ -132,6 +128,11 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
   const handleLogout = () => {
     localStorage.removeItem("userEmail");
     setUser(null);
+  };
+
+  // Función para manejar el click en el cuaderno y redirigir a la vista de detalle
+  const handleNotebookClick = (id) => {
+    navigate(`/notebook/${id}`);
   };
 
   return (
@@ -190,13 +191,25 @@ function NotebookListPage({ notebooks, setNotebooks, user, setUser }) {
           <>
             <section className="notebook-list-page__notebooks-section">
               {sortedNotebooks.map((notebook) => (
-                <NotebookCard
+                // Envuelve cada NotebookCard en un contenedor clickeable
+                <div
                   key={notebook.id}
-                  title={notebook.title}
-                  details={`${notebook.items} items • ${notebook.sources} fuentes`}
-                  onDelete={() => handleDeleteNotebook(notebook.id)}
-                  onRename={() => handleRenameNotebook(notebook.id)}
-                />
+                  onClick={() => handleNotebookClick(notebook.id)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <NotebookCard
+                    title={notebook.title}
+                    details={`${notebook.items} items • ${notebook.sources} fuentes`}
+                    onDelete={(e) => {
+                      e.stopPropagation(); // Evita que el click se propague al contenedor
+                      handleDeleteNotebook(notebook.id);
+                    }}
+                    onRename={(e) => {
+                      e.stopPropagation();
+                      handleRenameNotebook(notebook.id);
+                    }}
+                  />
+                </div>
               ))}
             </section>
             <button
